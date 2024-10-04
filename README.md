@@ -96,13 +96,22 @@ Getting Started
 
 ### Installation
 
-1.  bashCopy codegit clone https://github.com/yourusername/dynamic-pricing-rl.gitcd dynamic-pricing-rl
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Brahim07-esprit/Dynamic_Pricing_Optimization.git
+    cd Dynamic_Pricing_Optimization
+    ```
     
-2.  bashCopy codepython -m venv venvsource venv/bin/activate # On Windows use \`venv\\Scripts\\activate\`
+2.  **Create a virtual environment** (optional but highly recommended):
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
     
-3.  bashCopy codepip install -r requirements.txt
-    
-4.  bashCopy codejupyter notebookOpen Dynamic\_Pricing\_RL.ipynb in the Jupyter interface.
+3.  **Install Dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
     
 
 Simulation Environment
@@ -143,9 +152,6 @@ Market dynamics include:
 
 ### Customer Behavior Simulation
 
-Customer demand is simulated using an exponential decay function influenced by price and random fluctuations:
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pythonCopy codedef calculate_demand(product, price):      # Exponential decay demand function with random noise      ...      return demand   `
 
 Reinforcement Learning Framework
 --------------------------------
@@ -166,13 +172,9 @@ Agent Development
 
 A neural network approximates the optimal action-value function:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pythonCopy codeclass DQNAgent(nn.Module):      def __init__(...):          super(DQNAgent, self).__init__()          ...   `
-
 ### Experience Replay
 
 An experience replay buffer stores past experiences to break correlation between consecutive samples:
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pythonCopy codeself.memory = deque(maxlen=buffer_size)   `
 
 Training the Agent
 ------------------
@@ -181,13 +183,10 @@ Training the Agent
 
 Price adjustments are discretized into small steps:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pythonCopy codeprice_steps = [-2, -1, 0, 1, 2]  # Possible price changes   `
-
 ### Training Loop
 
 The agent interacts with the environment, learns from experiences, and updates its policy:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pythonCopy codefor episode in range(num_episodes):      state = env.reset()      while not env.done:          action_indices = agent.select_action(state)          action = [price_steps[idx] for idx in action_indices]          next_state, reward, done, info = env.step(action)          agent.remember(state, action_indices, reward, next_state, done)          agent.replay()          state = next_state      agent.update_target_network()   `
 
 Evaluation
 ----------
@@ -228,7 +227,14 @@ Results
 
 **Units Sold Comparison**:
 
-ProductUnits Sold (RL Agent)Units Sold (Baseline)Product A6,04515,183Product B9,90722,291Product C1,7611,901Product D95,150138,877Product E752664
+| Product   | Units Sold (RL Agent) | Units Sold (Baseline) |
+|-----------|-----------------------|-----------------------|
+| Product A | 6,045                 | 15,183                |
+| Product B | 9,907                 | 22,291                |
+| Product C | 1,761                 | 1,901                 |
+| Product D | 95,150                | 138,877               |
+| Product E | 752                   | 664                   |
+
 
 **Average Selling Price Comparison**:
 
