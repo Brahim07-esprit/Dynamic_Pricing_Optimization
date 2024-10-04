@@ -238,14 +238,17 @@ Results
 
 **Average Selling Price Comparison**:
 
-ProductAvg. Price (RL Agent)Avg. Price (Baseline)Product A$74.18$50.00Product B$59.75$40.00Product C$116.73$80.00Product D$37.30$25.00Product E$221.25$150.00
+| Product   | Avg. Price (RL Agent) | Avg. Price (Baseline) |
+|-----------|-----------------------|-----------------------|
+| Product A | $74.18                | $50.00                |
+| Product B | $59.75                | $40.00                |
+| Product C | $116.73               | $80.00                |
+| Product D | $37.30                | $25.00                |
+| Product E | $221.25               | $150.00               |
+
 
 Conclusion
 ----------
 
 The reinforcement learning agent successfully learned dynamic pricing strategies that significantly improved total profit compared to the baseline. By adjusting prices in response to simulated market dynamics, the agent optimized the balance between price and demand.
 
-License
--------
-
-This project is licensed under the MIT License - see the LICENSE file for details.
